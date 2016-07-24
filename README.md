@@ -21,12 +21,6 @@ Will install:
 
 Vagrant in turn requires a VM provider to be installed, e.g. [VirtualBox](https://www.virtualbox.org/)
 
-## Run
-
-```vagrant up```
-
-It'll take a while the first time unless you have the Vagrant box hashicorp/precise64 already setup.
-
 ## Starting and Stopping
 
 ### Start
@@ -37,6 +31,7 @@ It'll take a while the first time unless you have the Vagrant box hashicorp/prec
 
 ### Reload
 In case configuration has been changed
+
 ```vagrant reload```
 
 ## Shell Access
@@ -49,4 +44,5 @@ Coming
 
 ## Destroying
 If you want to completely clean up this virtual environment
+
 ```vagrant destroy -f```
