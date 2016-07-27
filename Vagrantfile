@@ -16,6 +16,10 @@ Vagrant.configure("2") do |config|
     # vb.customize ["modifyvm", :id, "--cpus", "1"]
   end
 
+  # Set bash so that /vagrant/app open on ssh
+  config.vm.provision :shell,
+    inline: "echo 'cd /vagrant/app' >> /home/vagrant/.bash_profile"
+
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "playbooks/main.yml"
   end
