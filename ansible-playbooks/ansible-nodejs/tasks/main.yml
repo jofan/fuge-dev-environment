@@ -1,0 +1,47 @@
+---
+# - name: Install Remi repo.
+#   yum:
+#     name: "http://rpms.remirepo.net/enterprise/remi-release-7.rpm"
+#     state: present
+
+# - name: Import Remi GPG key.
+#   rpm_key:
+#     key: "http://rpms.remirepo.net/RPM-GPG-KEY-remi"
+#     state: present
+
+# - name: Install EPEL repo.
+#   yum: name=epel-release state=present
+
+- name: Ensure firewalld is stopped (since this is a test server).
+  service: name=firewalld state=stopped
+
+# - name: Install Node.js and npm.
+# yum: name=npm state=present enablerepo=epel
+
+- name: Install NodeJS from remote 
+  yum: 
+    name: https://rpm.nodesource.com/pub_4.x/el/7/x86_64/nodejs-4.4.7-2nodesource.el7.centos.x86_64.rpm
+    state: present
+
+- name: Install Yeoman and Fuge generator.
+  npm: name=yo global=yes state=present
+  npm: name=generator-fuge global=yes state=present
+
+- name: Install Fuge (to run our Node.js microservices).
+  npm: name=fuge global=yes state=present
+
+- name: Ensure Node.js app folder exists.
+  file: "path={{ node_apps_location }} state=directory"
+
+- name: Copy example Node.js app to server.
+  copy: "src=../app dest={{ node_apps_location }}"
+
+# - name: Sync app files.
+#   synchronize: "src=../app dest={{ node_apps_location }}"
+
+- name: Install app dependencies defined in package.json.
+  npm: "path={{ node_apps_location }}/app"
+
+#- name: Start example Node.js app.
+ # command: "forever start {{ node_apps_location }}/app/app.js"
+ # when: "forever_list.stdout.find('{{ node_apps_location }}/app/app.js') == -1"

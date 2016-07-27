@@ -1,0 +1,17 @@
+---
+- name: install the 'Development tools' package group
+  yum: name="@Development tools" state=present
+
+- name: Install packages
+  action: yum name={{item}} state=latest update_cache=yes
+  with_items:
+  - pkgconfig
+  # - gcc
+  # - gcc-c++
+  # - make
+  # - openssl-devel
+  - git
+  - vim
+  - curl
+  - wget
+  - tree

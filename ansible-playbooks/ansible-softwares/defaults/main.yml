@@ -1,0 +1,12 @@
+---
+softwares:
+  - pkgconfig
+  # - gcc
+  # - gcc-c++
+  # - make
+  # - openssl-devel
+  - git
+  - vim
+  - curl
+  - wget
+  - tree

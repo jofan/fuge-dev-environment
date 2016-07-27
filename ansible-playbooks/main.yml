@@ -1,0 +1,13 @@
+---
+- hosts: all
+  user: vagrant
+  become: true
+
+  roles:
+    - role: ansible-softwares
+    - role: ansible-nodejs
+
+  vars:
+    # Vars can also be passed in via CLI with `--extra-vars="name=value"`.
+    # node_apps_location: /usr/local/opt/node
+    node_apps_location: /vagrant
