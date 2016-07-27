@@ -23,8 +23,10 @@
     name: https://rpm.nodesource.com/pub_4.x/el/7/x86_64/nodejs-4.4.7-2nodesource.el7.centos.x86_64.rpm
     state: present
 
-- name: Install Yeoman and Fuge generator.
+- name: Install Yeoman.
   npm: name=yo global=yes state=present
+
+- name: Install Yeoman Fuge generator.
   npm: name=generator-fuge global=yes state=present
 
 - name: Install Fuge (to run our Node.js microservices).
